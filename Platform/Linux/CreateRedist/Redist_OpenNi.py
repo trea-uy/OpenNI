@@ -248,17 +248,17 @@ execute_check('make ' + MAKE_ARGS + ' -C ' + SCRIPT_DIR + '/../Build clean > ' +
 execute_check('make ' + MAKE_ARGS + ' -C ' + SCRIPT_DIR + '/../Build > ' + SCRIPT_DIR + '/Output/Build' + PROJECT_NAME + '.txt', 'Building')
 
 #--------------Doxygen---------------------------------------------------------#
-print "* Creating Doxygen..."
-logger.info("Creating DoxyGen...")
-os.chdir("../../../Source/DoxyGen");
-if os.path.exists("html"):
-    os.system("rm -rf html")
+print "* Skipping Doxygen..."
+logger.info("Skipping DoxyGen...")
+#os.chdir("../../../Source/DoxyGen");
+#if os.path.exists("html"):
+#    os.system("rm -rf html")
 # Running doxygen
-os.makedirs("html")
-execute_check("doxygen Doxyfile > "+ SCRIPT_DIR + "/Output/EngineDoxy.txt", "Creating Documentation")
+#os.makedirs("html")
+#execute_check("doxygen Doxyfile > "+ SCRIPT_DIR + "/Output/EngineDoxy.txt", "Creating Documentation")
 
 # remove unneeded files
-os.system("rm -rf html/*.map html/*.md5 html/*.hhc html/*.hhk html/*.hhp")
+#os.system("rm -rf html/*.map html/*.md5 html/*.hhc html/*.hhk html/*.hhp")
 
 #-------------Create Redist Dir------------------------------------------------#
 print "* Creating Redist Dir..."
@@ -279,7 +279,7 @@ os.makedirs(REDIST_DIR + "/Bin")
 os.makedirs(REDIST_DIR + "/Lib")
 os.makedirs(REDIST_DIR + "/Jar")
 os.makedirs(REDIST_DIR + "/Include")
-os.makedirs(REDIST_DIR + "/Documentation")
+#os.makedirs(REDIST_DIR + "/Documentation")
 os.makedirs(REDIST_DIR + "/Samples")
 os.makedirs(REDIST_DIR + "/Samples/Bin")
 os.makedirs(REDIST_DIR + "/Samples/Bin/" + PLATFORM + "-Debug")
@@ -325,7 +325,7 @@ shutil.copy("Bin/" + PLATFORM + "-Release/org.openni.jar", REDIST_DIR + "/Sample
 shutil.copy("Bin/" + PLATFORM + "-Release/org.openni.jar", REDIST_DIR + "/Samples/Bin/" + PLATFORM + "-Release")
 
 #docs
-shutil.copytree("../../Source/DoxyGen/html", REDIST_DIR + "/Documentation/html")
+#shutil.copytree("../../Source/DoxyGen/html", REDIST_DIR + "/Documentation/html")
 
 #include
 for includeFile in os.listdir("../../Include"):
